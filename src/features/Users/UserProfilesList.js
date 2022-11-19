@@ -1,15 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container } from "../../components";
 import { getFullName } from "./utils";
 
 export const UserProfilesList = () => {
   const { allUsers } = useSelector((state) => state.userSlice);
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.authSlice);
 
-  console.log("user", user);
   return (
     <Container btnText={"User List"}>
       {allUsers &&

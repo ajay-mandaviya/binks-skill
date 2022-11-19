@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchUser } from "../../services";
 
 export const getAllUsers = createAsyncThunk(
@@ -10,7 +10,6 @@ export const getAllUsers = createAsyncThunk(
 
       return users;
     } catch (error) {
-      console.log("errro", error);
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -33,7 +32,6 @@ const userProfileSlice = createSlice({
       state.loading = true;
     },
     [getAllUsers.fulfilled]: (state, action) => {
-      console.log(current(state));
       state.loading = false;
       state.allUsers = action.payload.results;
     },

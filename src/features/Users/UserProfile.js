@@ -9,13 +9,11 @@ export const UserProfile = () => {
   const { username } = useParams();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.userSlice);
-  const { user } = useSelector((state) => state.authSlice);
+
   const location = useLocation();
-  console.log("user", user);
-  console.log("currentUser", currentUser);
   useEffect(() => {
     dispatch(setCurrentUser(location?.state));
-  }, [username]);
+  }, [username, dispatch, location?.state]);
   const gender =
     currentUser?.gender?.charAt(0)?.toUpperCase() +
       currentUser?.gender?.slice(1) ?? "Not Found";
@@ -35,7 +33,7 @@ export const UserProfile = () => {
       {currentUser && (
         <div className="user-detail">
           <div>
-            <img src={`${userImg}`} />
+            <img src={`${userImg}`} alt="user-imag" />
           </div>
           <UserDetails
             infoTitle={"Name"}
@@ -56,7 +54,6 @@ export const UserProfile = () => {
 };
 
 function UserDetails({ infoTitle, info }) {
-  console.log("info", info);
   return (
     <div className="text-info">
       <p>{infoTitle}</p>

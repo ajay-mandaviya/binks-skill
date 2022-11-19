@@ -14,13 +14,27 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Routes>
-        <Route index element={<UserProfilesList />} />
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <UserProfilesList />
+            </PrivateRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/user/:username" element={<UserProfile />} />
+        <Route
+          path="/user/:username"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </>
   );

@@ -8,7 +8,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLogin } = useSelector((state) => state.authSlice);
-  console.log(isLogin);
+
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
@@ -21,11 +21,11 @@ export const Login = () => {
     });
   };
 
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/");
+    }
+  }, [isLogin, navigate]);
 
   const handleUserLogin = (e) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ export const Login = () => {
     <div className="login-page">
       <div className="login-container">
         <div className="login-header">
-          <h2>Welcome Back</h2>
+          <h2>SignIn to Continue</h2>
         </div>
         <div className="login-input-container">
           <form onSubmit={handleUserLogin}>
@@ -68,7 +68,7 @@ export const Login = () => {
 
             <div className="btn-contaiers">
               <button type="submit" className="login-btn">
-                Guest Login
+                Login
               </button>
             </div>
           </form>
