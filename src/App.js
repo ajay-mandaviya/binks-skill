@@ -1,10 +1,16 @@
 import "./App.css";
+import { Login, PrivateRoute, UserProfile, UserProfilesList } from "./features";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <p>App run </p>
-    </div>
+    <>
+      <Routes>
+        <Route index element={<UserProfilesList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user/:username" element={<UserProfile />} />
+      </Routes>
+    </>
   );
 }
 
