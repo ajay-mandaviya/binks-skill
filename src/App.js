@@ -1,8 +1,20 @@
 import "./App.css";
-import { Login, PrivateRoute, UserProfile, UserProfilesList } from "./features";
+import {
+  getAllUsers,
+  Login,
+  PrivateRoute,
+  UserProfile,
+  UserProfilesList,
+} from "./features";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, []);
   return (
     <>
       <Routes>
